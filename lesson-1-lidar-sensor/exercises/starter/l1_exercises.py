@@ -56,5 +56,15 @@ def print_no_of_vehicles(frame):
     # find out the number of labeled vehicles in the given frame
     # Hint: inspect the data structure frame.laser_labels
     num_vehicles = 0
+    for laser_label in frame.laser_labels:
+        if laser_label.type == laser_label.TYPE_VEHICLE:
+            num_vehicles += 1
             
     print("number of labeled vehicles in current frame = " + str(num_vehicles))
+
+
+def  print_no_of_laser_leds(frame, lidar_name):
+    counts = 0
+    for laser_calibration in frame.context.laser_calibrations:
+        if laser_calibration.name == lidar_name:
+            print(len(laser_calibration.beam_inclinations))

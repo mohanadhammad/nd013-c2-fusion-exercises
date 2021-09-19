@@ -21,7 +21,7 @@ import numpy as np
 import zlib
 
 import matplotlib
-matplotlib.use('wxagg') # change backend so that figure maximizing works on Mac as well     
+#matplotlib.use('wxagg') # change backend so that figure maximizing works on Mac as well     
 import matplotlib.pyplot as plt
 
 # Exercise C2-4-6 : Plotting the precision-recall curve
@@ -31,7 +31,7 @@ def plot_precision_recall():
     #              by subsequently setting the variable configs.conf_thresh to the values 0.1 ... 0.9 and noted down the results.
     
     # Please create a 2d scatter plot of all precision/recall pairs 
-
+    pass
 
 
 # Exercise C2-3-4 : Compute precision and recall
@@ -88,4 +88,4 @@ def pcl_to_bev(lidar_pcl, configs, vis=True):
     #        if cv2.waitKey(10) & 0xFF == 27:
     #            break
     #    cv2.destroyAllWindows()
-
+    pass
