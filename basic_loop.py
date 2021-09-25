@@ -103,8 +103,8 @@ while True:
         lidar_name = dataset_pb2.LaserName.TOP
 
         # Exercise C1-3-1 : print no. of vehicles
-        l1_exercises.print_no_of_vehicles(frame)
-        l1_exercises.print_no_of_laser_leds(frame, lidar_name)
+        #l1_exercises.print_no_of_vehicles(frame)
+        #l1_exercises.print_no_of_laser_leds(frame, lidar_name)
 
         # Example C1-3-2 : display camera image
         # l1_examples.display_image(frame)
@@ -122,10 +122,10 @@ while True:
         # l1_examples.get_max_min_range(frame, lidar_name)
 
         # Example C1-5-4 : Visualize range channel
-        # l1_examples.vis_range_channel(frame, lidar_name)
+        #l1_examples.vis_range_channel(frame, lidar_name)
 
         # Exercise C1-5-5 : Visualize intensity channel
-        # l1_exercises.vis_intensity_channel(frame, lidar_name)
+        l1_exercises.vis_intensity_channel(frame, lidar_name)
 
         # Example C1-5-6 : Convert range image to 3D point-cloud
         # l1_examples.range_image_to_point_cloud(frame, lidar_name)
