@@ -11,7 +11,10 @@
             "request": "launch",
             // "program": "${file}",
             "program": "${workspaceFolder}/basic_loop.py",
-            "console": "integratedTerminal"
+            "console": "integratedTerminal",
+            "python.autoComplete.extraPaths": [
+                "${workspaceFolder}/tools"
+            ]
         }
     ]
 }
