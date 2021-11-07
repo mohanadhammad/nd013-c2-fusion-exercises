@@ -109,12 +109,23 @@ def pcl_to_bev(lidar_pcl, configs, vis=True):
     intensity_map[x_idx, y_idx] = lidar_pcl_intensity[:, 3] / normalize_flt
 
     #visualize intensity map
-    if vis:
-       img_intensity = intensity_map * 256
-       img_intensity = img_intensity.astype(np.uint8)
-       while (1):
-           cv2.imshow('img_intensity', img_intensity)
-           if cv2.waitKey(10) & 0xFF == 27:
-               break
-       cv2.destroyAllWindows()
-    #pass
+    # if vis:
+    #    img_intensity = intensity_map * 256
+    #    img_intensity = img_intensity.astype(np.uint8)
+    #    while (1):
+    #        cv2.imshow('img_intensity', img_intensity)
+    #        if cv2.waitKey(10) & 0xFF == 27:
+    #            break
+    #    cv2.destroyAllWindows()
+
+    #visualize height map
+    # if vis:
+    #    img_height = height_map * 256
+    #    img_height = img_height.astype(np.uint8)
+    #    while (1):
+    #        cv2.imshow('img_height', img_height)
+    #        if cv2.waitKey(10) & 0xFF == 27:
+    #            break
+    #    cv2.destroyAllWindows()
+
+    pass

@@ -103,8 +103,8 @@ def crop_pcl(lidar_pcl, configs, vis=True):
 
     # visualize point-cloud
     if vis:
-        pcd = o3d.geometry.PointCloud()
-        pcd.points = o3d.utility.Vector3dVector(lidar_pcl)
+        pcd = o3d.geometry.PointCloud()        
+        pcd.points = o3d.utility.Vector3dVector(lidar_pcl[:, :3]) # shape must be [N, 3] otherwise runtime error happens
         o3d.visualization.draw_geometries([pcd])
 
     return lidar_pcl

@@ -63,6 +63,11 @@ def range_image_to_point_cloud(frame, lidar_name, vis=True):
     az_correction = math.atan2(extrinsic[1,0], extrinsic[0,0])
     azimuth = np.linspace(np.pi,-np.pi,width) - az_correction
 
+    azimuth_degs = np.linspace(np.pi,-np.pi,width) * 180. / np.pi
+    center_index = azimuth_degs.shape[0]//2
+    azimuth_center = (azimuth_degs[-1] - azimuth_degs[0]) / 2.
+    print(azimuth_degs[1326])
+
     # expand inclination and azimuth such that every range image cell has its own appropriate value pair
     azimuth_tiled = np.broadcast_to(azimuth[np.newaxis,:], (height,width))
     inclination_tiled = np.broadcast_to(inclinations[:,np.newaxis],(height,width))
@@ -88,8 +93,8 @@ def range_image_to_point_cloud(frame, lidar_name, vis=True):
         o3d.visualization.draw_geometries([pcd])
 
     # stack lidar point intensity as last column
-    pcl_full = np.column_stack((pcl, ri[idx_range, 1]))    
-
+    pcl_full = np.column_stack((pcl, ri[idx_range, 1]))
+    
     return pcl_full    
 
 
