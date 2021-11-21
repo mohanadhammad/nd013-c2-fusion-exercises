@@ -25,6 +25,8 @@ class Filter:
         ############
         # TODO: implement prediction step
         ############
+        x = self.F() @ x
+        P = (self.F() @ P @ self.F().T) + self.Q()
         
         return x, P
 
@@ -34,6 +36,14 @@ class Filter:
         ############
         # TODO: implement update step
         ############
+        y = z - self.H() @ x
+        S = (self.H() @ P @ self.H().T) + R
+        K = P * self.H().T * S.I
+        
+        I = np.eye(len(self.F()))
+        
+        x = x + K @ y
+        P = (I - K * self.H()) @ P
         
         return x, P     
         
