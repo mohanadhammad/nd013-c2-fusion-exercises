@@ -34,10 +34,14 @@ class Filter:
         dt2 = dt ** 2
         dt3 = dt2 * dt
         
-        return np.array([[dt3*q/3., 0., dt2*q/2., 0.],
-                         [0., dt3*q/3., 0., dt2*q/2.],
-                         [dt2*q/2., 0., dt*q, 0.],
-                         [0., dt2*q/2., 0., dt*q]])
+        q11 = dt3*q/3.
+        q13 = dt2*q/2.
+        q33 = dt*q
+        
+        return np.array([[q11, 0., q13, 0.],
+                         [0., q11, 0., q13],
+                         [q13, 0., q33, 0.],
+                         [0., q13, 0., q33]])
     
     def H(self):
         # measurement matrix H
