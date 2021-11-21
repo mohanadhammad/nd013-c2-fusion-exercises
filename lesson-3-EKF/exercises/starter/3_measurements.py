@@ -19,6 +19,10 @@ class Camera:
         ############
         # TODO: implement and return h(x)
         ############
+        p_x, p_y, p_z, _, _, _ = x
+        
+        hx[0] = self.c_i - (self.f_i * p_y / p_x)
+        hx[1] = self.c_j - (self.f_j * p_z / p_x)
         
         return hx
     
@@ -29,6 +33,15 @@ class Camera:
         ############
         # TODO: implement and return H
         ############ 
+        
+        p_x, p_y, p_z, v_x, v_y, v_z = x
+        p_x_2 = p_x**2
+        
+        H[0, 0] = (self.f_i * p_y) / p_x_2
+        H[0, 1] = -self.f_i / p_x
+        
+        H[1, 0] = (self.f_j * p_z) / p_x_2
+        H[1, 2] = -self.f_j / p_x
         
         return H
  
