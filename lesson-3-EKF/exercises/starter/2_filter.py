@@ -17,7 +17,10 @@ class Filter:
         # TODO: implement and return F
         ############
         
-        pass
+        return np.array([[1., 0., self.dt, 0.],
+                        [0., 1., 0., self.dt],
+                        [0., 0., 1., 0.],
+                        [0., 0., 0., 1.]])
 
     def Q(self):
         # process noise covariance Q
@@ -26,7 +29,15 @@ class Filter:
         # TODO: implement and return Q
         ############
         
-        pass
+        q = self.q
+        dt = self.dt
+        dt2 = dt ** 2
+        dt3 = dt2 * dt
+        
+        return np.array([[dt3*q/3., 0., dt2*q/2., 0.],
+                         [0., dt3*q/3., 0., dt2*q/2.],
+                         [dt2*q/2., 0., dt*q, 0.],
+                         [0., dt2*q/2., 0., dt*q]])
     
     def H(self):
         # measurement matrix H
@@ -35,7 +46,8 @@ class Filter:
         # TODO: implement and return H
         ############
     
-        pass
+        return np.array([[1., 0., 0., 0.],
+                         [0., 1., 0., 0.]])
     
     def predict(self, x, P):
         # predict state and estimation error covariance to next timestep
