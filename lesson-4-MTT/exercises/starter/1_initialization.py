@@ -17,6 +17,28 @@ class Track:
         # TODO: initialize self.x and self.P from measurement z and R, don't forget coordinate transforms
         ############
         
+        ##### Step 1. Track Position Initialization
+        z = np.zeros((4, 1))
+        z[0:3] = meas.z                     # homogenous measurement vector
+        z[3] = 1.
+        H = meas.sens_to_veh                # homogenous transformation matrix
+        
+        y = H @ z                           # apply transformation from sensor to vehicle coordinates
+        self.x[0:3] = y[0:3]                # set the position state elements with the transformed measurements
+        
+        ##### Step 2. Track Covariance Initialization
+        M_rot = H[0:3, 0:3]                 # extract the rotation matrix from the Homogenous transformation matrix
+        
+        P_pos = M_rot @ meas.R @ M_rot.T    # The 3x3 Matrix for the position estimation error covariance P_pos can
+                                            # be initialized from the measurement covariance R by rotating from sensor
+                                            # to vehicle coordinates
+
+        P_vel = np.eye((3)) * 100           # the velocity estimation error covariance can be initialized with a diagonal
+                                            # matrix containing large diagonal values, since we cannot measure velocity
+                                            # and therefore have a huge initial velocity uncertainty
+        
+        self.P[0:3, 0:3] = P_pos
+        self.P[3:6, 3:6] = P_vel
         
 ###################  
         
