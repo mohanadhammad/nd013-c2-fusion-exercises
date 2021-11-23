@@ -21,6 +21,10 @@ class Association:
         # TODO: fill association matrix with Mahalanobis distances between all tracks and all measurements
         ############
         
+        for n, track in enumerate(track_list):
+            for m, meas in enumerate(meas_list):
+                self.association_matrix[n, m] = self.MHD(track, meas)
+        
     def MHD(self, track, meas):
         # calc Mahalanobis distance
 
@@ -30,7 +34,15 @@ class Association:
         # Note that the track is already given in sensor coordinates here, no transformation needed.
         ############
         
-        return 0
+        H = np.matrix([[1, 0, 0, 0],
+                       [0, 1, 0, 0]])
+
+        residual_vec = meas.z - (H * track.x)
+        residual_cov = (H * track.P * H.T) + meas.R
+        
+        mahalo_dist = residual_vec.T * np.linalg.inv(residual_cov) * residual_vec
+        
+        return mahalo_dist
     
 
 ################## 
