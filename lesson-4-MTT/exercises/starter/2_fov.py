@@ -28,7 +28,18 @@ class Camera:
         # TODO: Return True if x lies in sensor's field of view, otherwise return False. 
         # Don't forget to transform from vehicle to sensor coordinates.
         ############
-            
+        
+        x_pos = np.ones((4, 1))
+        x_pos[0:3] = x[0:3]
+        
+        x_cam = self.veh_to_sens @ x_pos
+        px, py, _, _ = x_cam
+
+        alpha = np.arctan2(py, px)
+        
+        if (alpha > self.fov[0] and alpha < self.fov[1]):
+            return True
+        
         return False
         
 #################
