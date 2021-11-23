@@ -29,11 +29,11 @@ class Camera:
         # Don't forget to transform from vehicle to sensor coordinates.
         ############
         
-        x_pos = np.ones((4, 1))
-        x_pos[0:3] = x[0:3]
+        pos_veh = np.ones((4, 1))
+        pos_veh[0:3] = x[0:3]
         
-        x_cam = self.veh_to_sens @ x_pos
-        px, py, _, _ = x_cam
+        pos_cam = self.veh_to_sens @ pos_veh
+        px, py, _, _ = pos_cam
 
         alpha = np.arctan2(py, px)
         
